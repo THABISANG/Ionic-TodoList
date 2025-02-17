@@ -1,0 +1,75 @@
+ion-button {
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 120px; 
+  text-align: center;
+}
+
+ion-button:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+ion-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+ion-button[color="primary"] {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+}
+
+ion-button[color="secondary"] {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+}
+
+ion-button[color="success"] {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+}
+
+ion-button[color="danger"] {
+  background: linear-gradient(135deg, #dc3545, #a71d2a);
+  color: white;
+}
+
+ion-item {
+  margin-bottom: 12px;
+}
+
+ion-label {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  
+  margin-bottom: 10px;
+}
+
+.task-info {
+  flex: 1;
+  padding-right: 12px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-actions {
+  display: flex;
+  //flex-direction: column; 
+  gap: 8px; 
+  align-items: flex-end;
+}

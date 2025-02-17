@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ToDo List</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add a New Task</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Task Title</ion-label>
+        <ion-input [(ngModel)]="newTaskTitle" placeholder="Enter task title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Task Description</ion-label>
+        <ion-textarea [(ngModel)]="newTaskDescription" placeholder="Enter task description"></ion-textarea>
+      </ion-item>
+      <ion-button expand="default" color="primary" (click)="addTask()">➕ Add Task</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let task of tasks$ | async; trackBy: trackById" class="task-item">
+      <ion-checkbox 
+        slot="start" 
+        [checked]="task.completed" 
+        (ionChange)="markAsCompleted(task.id)">
+      </ion-checkbox>
+
+      <div *ngIf="editingTaskId !== task.id" class="task-info">
+        <ion-label [class.completed]="task.completed">
+          <strong>{{ task.title }}</strong>
+        </ion-label>
+        <p *ngIf="task.description">{{ task.description }}</p>
+      </div>
+
+      <div *ngIf="editingTaskId === task.id" class="task-edit">
+        <ion-item>
+          <ion-label position="floating">Edit Title</ion-label>
+          <ion-input [(ngModel)]="editedTitle"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Edit Description</ion-label>
+          <ion-textarea [(ngModel)]="editedDescription"></ion-textarea>
+        </ion-item>
+      </div>
+      <div class="task-actions">
+        <ion-button fill="clear" color="secondary" (click)="editTask(task)" *ngIf="editingTaskId !== task.id">
+          <ion-icon name="create" slot="start"></ion-icon> 📝 Edit
+        </ion-button>
+        <ion-button fill="clear" color="success" (click)="saveTask(task)" *ngIf="editingTaskId === task.id">
+          ✅ Save
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="deleteTask(task.id)">
+          🗑️ Delete
+        </ion-button>
+        <ion-button fill="clear" color="medium" (click)="cancelEdit()" *ngIf="editingTaskId === task.id">
+          ❌ Cancel
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
